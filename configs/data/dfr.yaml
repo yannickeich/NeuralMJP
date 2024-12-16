@@ -1,0 +1,40 @@
+name: discrete_flashing_ratchet
+
+simulation:
+  model: "MJP" # one of "MC", "MJP" (time is either ignored or part of model)
+  seed: 1
+
+  B: 5000 # number of time-series to generate
+  T: 50 # number of observations per time-series
+
+  gaussian_std: 0.1 # std for additive gaussian noise
+
+  # For discrete noise like in Opper
+  opper_correction_term: 0.0000001
+  opper_additional_range: 0
+
+  # For state dependent gaussian noise
+  state_dependent_std: !!python/tuple [ 0, 0.02, 0.04, 0.06, 0.08, 0.1 ]
+
+  # For random projection
+  proj_dim: 3
+  proj_gaussian_std: 0.1
+
+  MJP_config:
+    t_max: 1.25 # observe process in time interval [0,t_max]
+    generate_prediction_set: False
+    share_observation_times: False
+    regular_grid: False
+    load_non_pred_grid: None
+
+  use_default_dir: True # default dir is data_path from neuralmjp 
+  non_default_dir: "../new_data" # relative path (from script) to non-default directory
+
+data_model:
+  name: DFR # name of class that inherits from MJP (located in same file as MJP class)
+  args:
+    # DFR parameters
+    Temp: 1
+    V: 1
+    r: 1
+    rates_when_potential_on: 1
