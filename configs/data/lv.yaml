@@ -1,0 +1,43 @@
+name: lotka_volterra
+
+simulation:
+  model: "MJP" # one of "MC", "MJP" (time is either ignored or part of model)
+  seed: 1
+
+  B: 5000 # number of time-series to generate
+  T: 50 # number of observations per time-series
+
+  gaussian_std: 1 # std for additive gaussian noise
+
+  opper_correction_term: 0.0000001
+  opper_additional_range: 5
+
+  MJP_config:
+    t_max: 1500 # observe process in time interval [0,t_max]
+    generate_prediction_set: False
+    share_observation_times: False
+    regular_grid: False
+    load_non_pred_grid: None
+
+  use_default_dir: True # default dir is data_path from neuralmjp 
+  non_default_dir: "../new_data" # relative path (from script) to non-default directory
+
+data_model:
+  name: LV # name of class that inherits from MJP (located in same file as MJP class)
+  args:
+    # Rates for transitions 0->1 so trajectories don't always get stuck at 0
+    min_up_rate: 0.000001
+
+    # Random initalization of trajectories
+    random_init: True
+    init_lower_bound: 5
+    init_upper_bound: 20
+
+    # if random_init is False
+    init_state: !!python/tuple [ 19, 7 ]
+
+    # LV parameters
+    alpha: 0.0005
+    beta: 0.0001
+    gamma: 0.0005
+    delta: 0.0001

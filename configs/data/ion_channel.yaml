@@ -1,0 +1,24 @@
+name: ion_channel
+
+generation:
+  T: 100
+
+  generation_dt: 0.0002  # s
+  burn_in: 5000
+  small_data_range: !!python/tuple [ 9200, 14200 ]
+
+  B_comp_traj_test: 10
+  B_comp_traj_val: 10
+  B_comp_traj_pred_test: 10
+
+  B_small_traj_test: 10
+  B_small_traj_val: 10
+  B_small_traj_pred_test: 10
+
+  raw_data_path: PATH TO KcvMT325_140mV.txt
+
+  use_default_dir: True # default dir is data_path from markovchainae # default dir is data_path from markovchainae
+  non_default_dir: "../new_data" # relative path (from script) to non-default directory
+
+data_model:
+  name: IonChannel
