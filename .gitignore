@@ -27,10 +27,6 @@ share/python-wheels/
 *.egg
 MANIFEST
 env/
-data/
-!**/gpwiener/data/
-!**/gpwiener/data/*
-raw_data/
 results/
 figures/
 figures_and_tables/
